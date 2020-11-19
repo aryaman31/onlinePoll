@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Poll Quiz Controller</title>
+	<script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-database.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+
+
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	<script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+	<div id="currentQ-block" class="center">
+		<p>Current Question:</p>
+		<h2 id="curr-qs">current question displayed here</h2>
+	</div>
+
+	<hr>
+
+	<div id="nextQ-block" class="center">
+		<p id="timer">Timer goes here</p>
+		<button id="nextQ-button" onclick="nextQuestion();">Next Question!</button>
+	</div>
+
+	<hr>
+
+	<div id="restart-block" class="center">
+		<button id="restart" onclick="restart();">Restart quiz</button>
+	</div>
+	
+	<hr>
+
+	<div id="questionlist-block">
+		<ol id="question-list"></ol>
+	</div>
+
+</body>
+</html>

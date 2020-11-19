@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ONLINE POLL VIBES</title>
+	<meta name=”viewport” content=”width=device-width, initial-scale=1″>
+
+	<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+
+	<script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.15.3/firebase-database.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	<script type="text/javascript" src="script.js"></script>
+
+
+</head>
+<body onload="onload();">
+	<div id="main-surface">
+		<div id="question-block">
+			<div id="question-div">
+				<h2 id="question-h">No Question in Queue</h2>
+			</div>
+			<p id="timer">test</p>
+			<div id="answer-div">
+				<div class="answer-row">
+					<button id="answer1" class="answer" value="maneesh" onclick="submit(this)">Maneesh</button>
+					<button id="answer2" class="answer" value="shruti" onclick="submit(this)">Shruti</button>
+				</div>
+				<div class="answer-row">
+					<button id="answer3" class="answer" value="bubbles" onclick="submit(this)">Bubbles</button>
+					<button id="answer4" class="answer" value="anupum" onclick="submit(this)">Anupum</button>
+				</div>
+				<div class="answer-row">
+					<button id="answer5" class="answer" value="sharon" onclick="submit(this)">Sharon</button>
+					<button id="answer6" class="answer" value="neville" onclick="submit(this)">Neville</button>
+				</div>
+				<div class="answer-row">
+					<button id="answer7" class="answer" value="ajay" onclick="submit(this)">Ajay</button>
+					<button id="answer8" class="answer" value="shilpa" onclick="submit(this)">Shilpa</button>
+				</div>
+				<div class="answer-row">
+					<button id="answer9" class="answer" value="puja" onclick="submit(this)">Puja</button>
+					<button id="answer10" class="answer" value="mayank" onclick="submit(this)">Mayank</button>
+				</div>
+				<div class="answer-row">
+					<button id="answer11" class="answer" value="vaishali" onclick="submit(this)">Vaishali</button>
+					<button id="answer12" class="answer" value="mayur" onclick="submit(this)">Mayur</button>
+				</div>
+				<div class="answer-row">
+					<button id="answer13" class="answer" value="prasanth" onclick="submit(this)">Prasanth</button>
+					<button id="answer14" class="answer" value="ritu" onclick="submit(this)">Ritu</button>
+				</div>
+			</div>
+		</div>
+
+		<div id="graph-block">
+			<canvas id="myCanvas"></canvas>
+			<script type="text/javascript" src="bargraph.js"></script>
+		</div>
+	</div>
+</body>
+</html>
