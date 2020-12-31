@@ -16,6 +16,7 @@ var ref = database.ref("questions");
 ref.on('value', getData, errData);
 
 var resetTimer = false;
+var displayGraph = false
 var x;
 
 function getData(data) {
@@ -35,7 +36,7 @@ function getData(data) {
 		timer(30);
 		p.innerHTML = eval("qsObj.q" + qCounter.toString());
 
-		for (var i = qCounter + 1; i < totalQuestions; i++) {
+		for (var i = qCounter + 1; i <= totalQuestions; i++) {
 			var li = document.createElement('li');
 			var text = document.createTextNode(eval("qsObj.q" + i.toString()))
 			li.appendChild(text);
@@ -59,8 +60,8 @@ function nextQuestion() {
 	var updates = {
 		"maneesh": 0,
 		"shruti": 0,
-		"bubbles": 0,
-		"anupum": 0,
+		"deppali": 0,
+		"shrey": 0,
 		"sharon": 0,
 		"neville": 0,
 		"ajay": 0,
@@ -69,8 +70,8 @@ function nextQuestion() {
 		"mayank": 0,
 		"vaishali": 0,
 		"mayur": 0,
-		"prasanth": 0,
-		"ritu": 0
+		"rajni": 0,
+		"deepesh": 0
 	}
 	ref = database.ref('counters');
 	ref.update(updates);
@@ -79,6 +80,26 @@ function nextQuestion() {
 
 	ref = database.ref('questions');
 	ref.child("questionCounter").set(firebase.database.ServerValue.increment(1));
+}
+
+function toggleGraph() {
+	ref = database.ref('displayGraph')
+	ref.set(displayGraph)
+	ref = database.ref('questions');
+}
+
+function nextQ_graph_handler() {
+	var button = document.getElementById("nextQ-graph-button");
+	if (button.innerText == "Next Question!") {
+		nextQuestion()
+		button.innerText = "Display Graph"
+		displayGraph = false
+		toggleGraph()
+	} else {
+		button.innerText = "Next Question!"
+		displayGraph = true
+		toggleGraph()
+	}
 }
 
 function restart() {

@@ -1,6 +1,7 @@
 var myCanvas = document.getElementById("myCanvas");
 myCanvas.width = document.getElementById("graph-block").clientWidth - 20;
 myCanvas.height = document.getElementById("graph-block").clientHeight - 20;
+var displayGraph = false
 
 var ctx = myCanvas.getContext("2d");
 
@@ -72,25 +73,62 @@ var Barchart = function(options) {
 	}
 }
 
-function drawGraph() {
+function draw() {
 	ref = database.ref("counters");
 	ref.on('value', function (snap) {
-	var temp = snap.val();
+	if (displayGraph) {
+		var temp = snap.val();
+		var scores = {
+			"maneesh": temp.maneesh,
+			"shruti": temp.shruti,
+			"deppali": temp.deppali,
+			"shrey": temp.shrey,
+			"sharon": temp.sharon,
+			"neville": temp.neville,
+			"ajay": temp.ajay,
+			"shilpa": temp.shilpa,
+			"puja": temp.puja,
+			"mayank": temp.mayank,
+			"vaishali": temp.vaishali,
+			"mayur": temp.mayur,
+			"rajni": temp.rajni,
+			"deepesh": temp.deepesh
+		}
+		ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+		var myBarchart = new Barchart(
+	    {
+	        canvas:myCanvas,
+	        padding:10,
+	        gridScale:2,
+	        maxValue: 12,
+	        gridColor:"#C0BAAF",
+	        data:scores,
+	        colors:["#618985","#BCB6FF","#f2e3bc","#c19875", "#9BC53D","#764248","#716A5C","#bf0603", "#5DB7DE", "#fffd82", "#F7B1AB", "#e84855", "#CC5A71", "#CB904D"]
+	    }
+		);
+		myBarchart.draw();
+	}
+	}, function (err) {
+		alert("error" + err);
+	})
+}
+
+function drawEmpty() {
 	var scores = {
-		"maneesh": temp.maneesh,
-		"shruti": temp.shruti,
-		"bubbles": temp.bubbles,
-		"anupum": temp.anupum,
-		"sharon": temp.sharon,
-		"neville": temp.neville,
-		"ajay": temp.ajay,
-		"shilpa": temp.shilpa,
-		"puja": temp.puja,
-		"mayank": temp.mayank,
-		"vaishali": temp.vaishali,
-		"mayur": temp.mayur,
-		"prasanth": temp.prasanth,
-		"ritu": temp.ritu
+		"maneesh": 0,
+		"shruti": 0,
+		"deppali": 0,
+		"shrey": 0,
+		"sharon": 0,
+		"neville": 0,
+		"ajay": 0,
+		"shilpa": 0,
+		"puja": 0,
+		"mayank": 0,
+		"vaishali": 0,
+		"mayur": 0,
+		"rajni": 0,
+		"deepesh": 0
 	}
 	ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
 	var myBarchart = new Barchart(
@@ -105,9 +143,24 @@ function drawGraph() {
     }
 	);
 	myBarchart.draw();
-	}, function (err) {
-		alert("error" + err);
+}
+
+function drawGraph() {
+	ref = database.ref("displayGraph");
+	ref.on('value', function (snap) {
+		displayGraph = snap.val()
+		console.log(displayGraph)
+		if (displayGraph == true) {
+			draw()
+		} else {
+			console.log("ran draw drawEmpty")
+			drawEmpty()
+		}
+	}, function (e) {
+		alert("Error" + e);
 	})
+
+	
 }
 
 drawGraph();
